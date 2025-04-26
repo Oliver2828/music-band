@@ -2,9 +2,11 @@ import React from 'react'
 
 function Hero() {
   return (
-    <div>
-      this is going to be the hero 
+    <>
+      <div className="bg-[green] h-[70vh] grid ">
+        <div className=' bg-[blue] mx-[20%]'></div>
     </div>
+    </>
   )
 }
 

@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+body {
+    padding-top: 10vh; /* For mobile navbar height */
+  }
+  
+  @media (min-width: 768px) {
+    body {
+      padding-top: 0; /* Reset for desktop */
+    }
+  }
