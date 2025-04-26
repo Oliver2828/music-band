@@ -16,7 +16,6 @@ Rogers & Buffington perform at events of all kinds, including parties, weddings,
   return (
     <section className="bg-gray-900 text-gray-100 py-16" aria-labelledby="bio-heading">
       <div className="max-w-5xl mx-auto px-4">
-        {/* Title */}
         <h1 id="bio-heading" className="text-center text-4xl font-bold uppercase mb-8">
           Bio
         </h1>
