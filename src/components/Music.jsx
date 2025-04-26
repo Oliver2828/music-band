@@ -9,7 +9,10 @@ function Music() {
       </div>
       <div className=' bg-orange-500 row-span-10 gap-[30px] grid grid-rows-3'>
         <div className=' bg-[red] mx-[23%] h-[35vh] mt-[5vh] grid grid-rows-3'>
-          <div className=' bg-[]'></div>
+          <div className=' bg-[ grene] grid grid-cols-2'>
+            <div></div>
+            <div></div>
+          </div>
           <div></div>
           <div></div>
         </div>
