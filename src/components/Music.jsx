@@ -130,7 +130,7 @@ const SongCard = ({ title, audioSrc, index }) => {
 
 function Music() {
   return (
-    <div className="bg-[#0a0a0a] min-h-screen py-24 px-4 sm:px-6 lg:px-8">
+    <div id='music' className="bg-[#0a0a0a] min-h-screen py-24 px-4 sm:px-6 lg:px-8">
       <motion.h2 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

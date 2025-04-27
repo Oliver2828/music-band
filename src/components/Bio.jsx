@@ -1,16 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import bioImage from '../assets/Bio.jpg';
+import bioImage from '../assets/clo4.jpg';
 
 export default function Bio() {
   const paragraphs = [
-    `Will Rogers & Clint Buffington have performed as a live acoustic duo in Salt Lake City, Park City, and the wider Salt Lake region since 2012.`,
+    `Triump Acoustic Band have performed as a live acoustic duo in Salt Lake City, Park City, and the wider Salt Lake region since 2012.`,
     
     `Their fun selection of beloved covers from the past several decades combines with unique vocal harmonies and instrumentation (guitar, banjo, harmonica) to deliver professional and highly enjoyable performances.`,
     
     `Each live show features dynamic duets alongside individual performances, showcasing their versatile musical chemistry.`,
     
-    `Rogers & Buffington elevate events of all kinds - from intimate weddings to corporate gatherings - with tailored musical experiences that captivate audiences.`
+    `Triump Acoustic Band elevate events of all kinds - from intimate weddings to corporate gatherings - with tailored musical experiences that captivate audiences.`
   ];
 
   return (

@@ -77,13 +77,13 @@ export default function ContactMe() {
                   stiffness: 120 
                 }}
                 viewport={{ once: true }}
-                className="group relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-300 border border-gray-700 hover:border-amber-500/30 hover:-translate-y-2"
+                className="group relative bg-[#181818]  rounded-2xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-300 border border-black hover:border-amber-500/30 hover:-translate-y-2"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative flex flex-col items-center text-center space-y-6">
+                <div className="relative  flex flex-col items-center text-center space-y-6">
                   <motion.div
                     whileHover={{ scale: 1.1 }}
-                    className="w-20 h-20 rounded-full bg-gradient-to-br from-gray-800 to-gray-700 flex items-center justify-center shadow-xl border border-gray-600 group-hover:border-amber-500/50 transition-all"
+                    className="w-20 h-20 rounded-full bg-[#181818] flex items-center justify-center shadow-xl border border-gray-600 group-hover:border-amber-500/50 transition-all"
                   >
                     <contact.icon className="w-10 h-10 text-amber-500 group-hover:text-amber-400 transition-colors" />
                   </motion.div>

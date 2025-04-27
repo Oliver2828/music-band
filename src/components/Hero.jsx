@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaPlay, FaPause } from 'react-icons/fa';
+import backgroundImage from '../assets/clo3.jpg'; // Import the background image
+import song from '../assets/Band.mp3'; // Import the MP3 file
 
 function Hero() {
   const audioRef = useRef(null);
@@ -20,8 +22,9 @@ function Hero() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <div 
-          className="w-full h-full bg-[url(./assets/clo3.jpg)] bg-cover bg-center"
+          className="w-full h-full bg-cover bg-center"
           style={{
+            backgroundImage: `url(${backgroundImage})`, // Use the imported image
             maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0))',
             WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0))'
           }}
@@ -70,7 +73,7 @@ function Hero() {
         </motion.div>
 
         {/* Audio Element */}
-        <audio ref={audioRef} src="/path/to/your/song.mp3" />
+        <audio ref={audioRef} src={song} /> {/* Use the imported MP3 file */}
 
         {/* Scrolling Indicator */}
         <motion.div
