@@ -31,7 +31,7 @@ const UpcomingShows = () => {
   return (
     <div 
       className="relative min-h-screen bg-cover bg-center bg-fixed"
-      style={{ backgroundImage: "url('/coming.jpg')" }}
+      style={{ backgroundImage: "url('/src/assets/clo2.jpg')" }}
     >
       
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>

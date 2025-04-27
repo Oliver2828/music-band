@@ -29,7 +29,7 @@ export default function ContactMe() {
   ];
 
   return (
-    <section className="bg-[#0a0a0a] py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id='contact' className="bg-[#0a0a0a] py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0 }}

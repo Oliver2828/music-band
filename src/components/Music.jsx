@@ -1,20 +1,35 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { IoShareSocial } from "react-icons/io5";
 import { IoPlayCircleOutline, IoPauseCircleOutline } from "react-icons/io5";
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const songVariants = {
   hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { 
+      duration: 0.6,
+      type: "spring",
+      stiffness: 120
+    } 
+  },
 };
 
-const SongCard = ({ title, audioSrc }) => {
+const SongCard = ({ title, audioSrc, index }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const audioRef = useRef(null);
+  const controls = useAnimation();
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
 
   const handlePlayPause = () => {
     if (isPlaying) {
@@ -36,7 +51,7 @@ const SongCard = ({ title, audioSrc }) => {
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
 
   return (
@@ -44,47 +59,60 @@ const SongCard = ({ title, audioSrc }) => {
       ref={ref}
       variants={songVariants}
       initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      className='bg-black border border-white/20 rounded-lg mx-[10%] md:mx-[23%] h-[35vh] my-4 p-6 flex flex-col shadow-xl hover:shadow-2xl transition-shadow'
+      animate={controls}
+      className="group relative bg-[black] border-gray-800 rounded-2xl mx-[5%] md:mx-[25%] my-4 p-6 flex flex-col shadow-2xl hover:shadow-3xl transition-all duration-300"
     >
+      {/* Glow Effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
       {/* Song Info */}
-      <div className='border-b border-white/20 pb-4 mb-4 flex justify-between items-center'>
-        <div className='flex flex-col'>
-          <h4 className='text-xl md:text-2xl font-bold text-white'>{title}</h4>
-          <p className='text-sm md:text-base text-white/70'>Original Song By Triumph Acoustic Band</p>
+      <div className="border-b border-gray-800 pb-4 mb-4 flex justify-between items-center">
+        <div className="flex flex-col">
+          <h4 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">
+            {title}
+          </h4>
+          <p className="text-sm md:text-base text-gray-400 mt-1">
+            Original Song By Triumph Acoustic Band
+          </p>
         </div>
-        <button className='hover:text-amber-400 transition-colors'>
-          <IoShareSocial className='text-2xl' />
+        <button className="hover:text-amber-400 transition-colors hover:scale-110">
+          <IoShareSocial className="text-2xl" />
         </button>
       </div>
 
       {/* Play Controls */}
-      <div className='flex flex-1 flex-col justify-between'>
-        <div className='flex items-center justify-between'>
-          <button 
+      <div className="flex flex-1 flex-col justify-between">
+        <div className="flex items-center justify-between">
+          <motion.button 
             onClick={handlePlayPause}
-            className='hover:scale-105 transition-transform'
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative"
           >
             {isPlaying ? (
-              <IoPauseCircleOutline className='text-amber-400 text-4xl md:text-5xl' />
+              <IoPauseCircleOutline className="text-amber-400 text-4xl md:text-5xl drop-shadow-glow" />
             ) : (
-              <IoPlayCircleOutline className='text-amber-400 text-4xl md:text-5xl' />
+              <IoPlayCircleOutline className="text-amber-400 text-4xl md:text-5xl drop-shadow-glow" />
             )}
-          </button>
-          <span className='text-amber-300 text-lg md:text-xl font-medium'>{title}</span>
+          </motion.button>
+          <span className="text-amber-300 text-lg md:text-xl font-medium">
+            {title}
+          </span>
         </div>
 
         {/* Progress Bar */}
-        <div className='w-full bg-white/10 h-1 rounded-full mb-2'>
+        <div className="w-full bg-gray-800 h-1.5 rounded-full mb-2 mt-4">
           <motion.div
-            className='bg-amber-400 h-full rounded-full'
+            className="bg-amber-400 h-full rounded-full relative"
             animate={{ width: `${(currentTime / duration) * 100}%` }}
-            transition={{ duration: 0.3 }}
-          />
+            transition={{ duration: 0.2 }}
+          >
+            <div className="absolute right-0 -top-1 w-3 h-3 bg-amber-400 rounded-full shadow-glow" />
+          </motion.div>
         </div>
 
         {/* Time Display */}
-        <div className='flex justify-between text-white/80 text-sm'>
+        <div className="flex justify-between text-gray-400 text-sm font-mono mt-2">
           <span>{formatTime(currentTime)}</span>
           <span>{formatTime(duration)}</span>
         </div>
@@ -102,24 +130,29 @@ const SongCard = ({ title, audioSrc }) => {
 
 function Music() {
   return (
-    <div className='bg-[#181818] min-h-screen py-12'>
+    <div className="bg-[#0a0a0a] min-h-screen py-24 px-4 sm:px-6 lg:px-8">
       <motion.h2 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.7 }}
-        className='text-4xl md:text-5xl font-bold text-center text-white mb-12 font-serif'
+        transition={{ delay: 0.2 }}
+        className="text-4xl md:text-6xl font-bold text-center mb-16"
       >
-        Music
+        <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 bg-clip-text text-transparent">
+          Music
+        </span>
+        <div className="mt-4 h-1 bg-gradient-to-r from-amber-500/30 via-amber-500 to-amber-500/30 w-1/3 mx-auto" />
       </motion.h2>
       
-      <div className='space-y-14'>
+      <div className="space-y-12">
         <SongCard 
           title="PATH" 
           audioSrc="/src/assets/path.mp3" 
+          index={0}
         />
         <SongCard 
           title="RUNNER" 
           audioSrc="/src/assets/path2.mp3" 
+          index={1}
         />
       </div>
     </div>
