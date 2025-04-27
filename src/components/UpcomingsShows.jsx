@@ -1,9 +1,66 @@
-import React from 'react'
+import React from 'react';
 
-function UpcomingsShows() {
+const UpcomingShows = () => {
+  const shows = [
+    {
+      date: 'March 15th',
+      venue: 'High West Distillery',
+      location: 'Coalville, UT',
+      time: '6:00 PM'
+    },
+    {
+      date: 'March 28th',
+      venue: 'High West Distillery',
+      location: 'Coalville, UT',
+      time: '6:00 PM'
+    },
+    {
+      date: 'May 5th',
+      venue: 'Gracie\'s Bar',
+      location: 'Salt Lake City, UT',
+      time: '7:00 PM'
+    },
+    {
+      date: 'June 28th',
+      venue: 'Gracie\'s Bar',
+      location: 'Salt Lake City, UT',
+      time: 'Noon'
+    }
+  ];
+
   return (
-    <div>this is going to be the UpcomingsShows</div>
-  )
-}
+    <div 
+      className="relative min-h-screen bg-cover bg-center bg-fixed"
+      style={{ backgroundImage: "url('/coming.jpg')" }}
+    >
+      
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+      
+      
+      <div className="relative max-w-2xl mx-auto p-8 font-sans text-white">
+        <h2 className="text-3xl font-bold uppercase mb-8 tracking-wide">
+          Upcoming Shows
+        </h2>
+        
+       
+        <div className="space-y-10">
+          {shows.map((show, index) => (
+            <div key={index} className="space-y-2">
+            
+              <p className="text-xl font-semibold text-white/90">{show.date}</p>
+              
+             
+              <div className="pl-4 space-y-1 border-l-2 border-white/20">
+                <p className="text-lg font-medium">{show.venue}</p>
+                <p className="text-white/75">{show.location}</p>
+                <p className="text-white/75">{show.time}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default UpcomingsShows
+export default UpcomingShows;
