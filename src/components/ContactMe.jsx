@@ -1,6 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { EnvelopeIcon, PhoneIcon, MapPinIcon, UserGroupIcon } from '@heroicons/react/24/solid';
+import {
+  EnvelopeIcon,
+  PhoneIcon,
+  MapPinIcon,
+  UserGroupIcon
+} from '@heroicons/react/24/solid';
 
 export default function ContactMe() {
   const contacts = [
@@ -29,7 +34,10 @@ export default function ContactMe() {
   ];
 
   return (
-    <section id='contact' className="bg-[#0a0a0a] py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section
+      id="contact"
+      className="bg-[#0a0a0a] py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0 }}
@@ -37,6 +45,7 @@ export default function ContactMe() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
+          {/* Heading */}
           <div className="text-center mb-20 space-y-6">
             <motion.div
               initial={{ y: -20, opacity: 0 }}
@@ -64,23 +73,24 @@ export default function ContactMe() {
             </motion.p>
           </div>
 
+          {/* Contact Cards */}
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {contacts.map((contact, index) => (
               <motion.div
                 key={index}
                 initial={{ scale: 0.95, opacity: 0, y: 20 }}
                 whileInView={{ scale: 1, opacity: 1, y: 0 }}
-                transition={{ 
-                  duration: 0.6, 
+                transition={{
+                  duration: 0.6,
                   delay: index * 0.1,
-                  type: "spring", 
-                  stiffness: 120 
+                  type: "spring",
+                  stiffness: 120
                 }}
                 viewport={{ once: true }}
-                className="group relative bg-[#181818]  rounded-2xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-300 border border-black hover:border-amber-500/30 hover:-translate-y-2"
+                className="group relative bg-[#181818] rounded-2xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-300 border border-black hover:border-amber-500/30 hover:-translate-y-2"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative  flex flex-col items-center text-center space-y-6">
+                <div className="relative flex flex-col items-center text-center space-y-6">
                   <motion.div
                     whileHover={{ scale: 1.1 }}
                     className="w-20 h-20 rounded-full bg-[#181818] flex items-center justify-center shadow-xl border border-gray-600 group-hover:border-amber-500/50 transition-all"
@@ -102,7 +112,9 @@ export default function ContactMe() {
                         </span>
                       </a>
                     ) : (
-                      <p className="text-xl text-gray-200 font-medium">{contact.value}</p>
+                      <p className="text-xl text-gray-200 font-medium">
+                        {contact.value}
+                      </p>
                     )}
                   </div>
                 </div>
@@ -110,6 +122,7 @@ export default function ContactMe() {
             ))}
           </div>
 
+          {/* Divider */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -117,7 +130,6 @@ export default function ContactMe() {
             className="mt-20 text-center relative"
           >
             <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-full max-w-2xl h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
-            
           </motion.div>
         </motion.div>
       </div>
